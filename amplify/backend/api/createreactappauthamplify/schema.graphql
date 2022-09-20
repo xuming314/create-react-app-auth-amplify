@@ -1,0 +1,11 @@
+type Thread @model @auth(rules: [{allow: public}]) @key(name: "byBlog", fields: ["blogID"]) {
+  id: ID!
+  name: String
+  blogID: ID!
+}
+
+type Blog @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  threads: [Thread] @connection(keyName: "byBlog", fields: ["id"])
+}
